@@ -1,47 +1,22 @@
 #include   <stdio.h>
 
-
-
 int main()
-
 {
-
-
-
-	short test_short_var;
-
-	int test_int_var;
-
-	long test_long_var;
-
-	float test_float_var;
-
-	double test_double_var;
-
-	long double test_l_double_var;
-
-
+	short short_v;
+	int int_v;
+	long long_v;
+	float float_v;
+	double double_v;
+	long double long_double_v;
 
 	int result;
 
-
-
-	printf("%ld short\n", sizeof(test_short_var) ); 
-	
-        printf("%ld int\n", sizeof(test_int_var) );
-	
-        printf("%ld long\n", sizeof(test_long_var) );
-	
-	printf("%ld float\n", sizeof(test_float_var) ); 
-
-	printf("%ld double\n", sizeof(test_double_var) ); 
-
-	printf("%ld long double\n", sizeof(test_l_double_var) ); 
-
-
-
-
+	printf("%ld short\n", sizeof(short_v)); 
+        printf("%ld int\n", sizeof(int_v));
+        printf("%ld long\n", sizeof(long_v));
+	printf("%ld float\n", sizeof(float_v)); 
+	printf("%ld double\n", sizeof(double_v)); 
+	printf("%ld long double\n", sizeof(long_double_v)); 
 
 	return 0;
-
 }
