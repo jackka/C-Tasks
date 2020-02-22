@@ -41,7 +41,7 @@ int main()
 	int arraz[26]={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
 	int arrAZ[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
 		
-	char* str_val[4]={" a-z "," A-Z "," 0-9 ","Space"};
+	char* str_val[4]={"a-z","A-Z","0-9","Space"};
 
 	int sort_arr[4];
 
@@ -70,12 +70,22 @@ int main()
 	
 // each range + space to its place in order
 printf("Each range and Space to its place in order:\n");	
-for (int i = 0; i < 4; ++i)
-{
-	printf("%d,'%c'",sort_arr[i],(char)sort_arr[i]);//число из массива
-	printf("[%s];  ",str_val[i]);//str_val - имя диапазона ([0-9], [a-z], [A-Z])
-}
 
+	printf("[%s] имеет код ",str_val[0]); //для space
+	printf("%d",sort_arr[0]);
+    printf("\n");
+    
+	printf("[%s] имеют коды ",str_val[1]); //для [0-9]
+	printf("%d-%d",sort_arr[1]-9,sort_arr[1]);
+    printf("\n");
+    
+    for (int i = 2; i < 4; ++i)
+{
+	printf("[%s] имеют коды ",str_val[i]); //для [A-Z], [a-z]
+	printf("%d-%d",sort_arr[i]-25,sort_arr[i]);
+    printf("\n");
+}
+    
 return 0;
 
 }
