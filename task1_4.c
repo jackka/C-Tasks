@@ -3,7 +3,7 @@
 
 char gaps_and_order ( int arr[], int n, char* range) { //n-размер массива, char* range - диапазон ([0-9], [a-z], [A-Z]), см.44 стр
 	printf(" [%s] Range symbol codes Analysis.\n",range );
-	int bk_counter=0; //back counter
+	int bk_counter=0; //backward counter
 	int fd_counter=0; //forward counter
 	int i;
 	for ( i = 1; i < n; ++i){ //выясняем, как упорядочены коды символов между собой
@@ -22,7 +22,7 @@ char gaps_and_order ( int arr[], int n, char* range) { //n-размер масс
 	}
 
 	if (fd_counter == n-1 || bk_counter == n-1) {
-		printf("Range from [%s] symbol codes have no gaps.\n We could compare this range as an indivisible piecec.\n\n",range);	
+		printf("Range from [%s] symbol codes have no gaps.\n We could compare this range as an indivisible piece.\n\n",range);	
 		return arr[i-1]; 
 	} else{
 		return -1; printf("No order here.\n" );
@@ -45,10 +45,10 @@ int main()
 
 	int sort_arr[4];
 
-	sort_arr[0]=' ';
-	sort_arr[1]=gaps_and_order(arr09,10,str_val[2]);
-	sort_arr[2]=gaps_and_order(arraz,26,str_val[0]);
-	sort_arr[3]=gaps_and_order(arrAZ,26,str_val[1]);
+	sort_arr[3]=' ';
+	sort_arr[2]=gaps_and_order(arr09,10,str_val[2]);
+	sort_arr[0]=gaps_and_order(arraz,26,str_val[0]);
+	sort_arr[1]=gaps_and_order(arrAZ,26,str_val[1]);
 
 	for (int j = 1; j < 4; j++)
 	{
@@ -57,9 +57,9 @@ int main()
 			if (sort_arr[i]!=-1)
 			{
 				if (sort_arr[i]>sort_arr[i+1]){
-					int x=sort_arr[i];
-					sort_arr[i]=sort_arr[i+1];
-					sort_arr[i+1]=x;
+					int x=sort_arr[i]; char* y=str_val[i];
+					sort_arr[i]=sort_arr[i+1]; str_val[i]=str_val[i+1];
+					sort_arr[i+1]=x; str_val[i+1]=y;
 				}
 			}else{
 				printf("Ranges are not comparable!\n");
@@ -72,9 +72,9 @@ int main()
 printf("Each range and Space to its place in order:\n");	
 for (int i = 0; i < 4; ++i)
 {
-	printf("%d",sort_arr[i] );//число из массива
-	printf("[%s];",str_val[i]);//str_val - имя диапазона ([0-9], [a-z], [A-Z])
-} 
+	printf("%d,'%c'",sort_arr[i],(char)sort_arr[i]);//число из массива
+	printf("[%s];  ",str_val[i]);//str_val - имя диапазона ([0-9], [a-z], [A-Z])
+}
 
 return 0;
 
