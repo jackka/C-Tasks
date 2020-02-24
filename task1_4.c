@@ -1,6 +1,9 @@
 #include<stdio.h>
 #include<string.h>
 #include<stdlib.h>
+#include <malloc.h>
+
+void heapdump(void);
 
 
 char* itoa(int val, int base) {
@@ -114,12 +117,59 @@ int main()
 	}
 
 
-
+	heapdump();printf("\n");
 	for (int i = 0; i < 8; i++)
 		free(str_val[i]); 
 	
 	free(str_val);
-	
+	heapdump();printf("\n");
+
 	return 0;
 
+}
+
+
+
+// crt_heapwalk.c
+
+// This program "walks" the heap, starting
+// at the beginning (_pentry = NULL). It prints out each
+// heap entry's use, location, and size. It also prints
+// out information about the overall state of the heap as
+// soon as _heapwalk returns a value other than _HEAPOK
+// or if the loop has iterated 100 times.
+void heapdump(void)
+{
+	_HEAPINFO hinfo;
+	int heapstatus;
+	int numLoops;
+	hinfo._pentry = NULL;
+	numLoops = 0;
+	while ((heapstatus = _heapwalk(&hinfo)) == _HEAPOK ) //&&
+	//	numLoops < 10000)
+	{
+		printf("%8s block at %4.4X of size %4.4X\n",
+			(hinfo._useflag == _USEDENTRY ? "USED" : "FREE"),
+			hinfo._pentry, hinfo._size);
+		numLoops++;
+	}
+
+	switch (heapstatus)
+	{
+	case _HEAPEMPTY:
+		printf("OK - empty heap\n");
+		break;
+	case _HEAPEND:
+		printf("OK - end of heap\n");
+		break;
+	case _HEAPBADPTR:
+		printf("ERROR - bad pointer to heap\n");
+		break;
+	case _HEAPBADBEGIN:
+		printf("ERROR - bad start of heap\n");
+		break;
+	case _HEAPBADNODE:
+		printf("ERROR - bad node in heap\n");
+		break;
+	}
 }
