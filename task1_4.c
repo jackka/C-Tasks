@@ -1,12 +1,12 @@
 #include <stdio.h>
 
 
-char gaps_and_order ( int arr[], int n, char* range) { //n-размер массива, char* range - диапазон ([0-9], [a-z], [A-Z]), см.44 стр
-	printf(" [%s] Range symbol codes Analysis.\n",range );
+char gaps_and_order ( int arr[], int n, char* range) { //n-размер массива, char* range - диапазон ([0-9], [a-z], [A-Z])
+	printf("[%s] Range symbol codes Analysis.\n",range );
 	int bk_counter=0; //backward counter
 	int fd_counter=0; //forward counter
 	int i;
-	for ( i = 1; i < n; ++i){ //выясняем, как упорядочены коды символов между собой
+	for (i = 1; i < n; ++i){ //выясняем, как упорядочены коды символов между собой
 		switch (arr[i-1] - arr[i]){
 		case 1 : 
 			printf("Codes of '%c' and '%c' symbols have reverse order.\n", arr[i-1] , arr[i] );
@@ -45,10 +45,10 @@ int main()
 
 	int sort_arr[4];
 
-	sort_arr[3]=' ';
-	sort_arr[2]=gaps_and_order(arr09,10,str_val[2]);
 	sort_arr[0]=gaps_and_order(arraz,26,str_val[0]);
 	sort_arr[1]=gaps_and_order(arrAZ,26,str_val[1]);
+	sort_arr[2]=gaps_and_order(arr09,10,str_val[2]);
+	sort_arr[3]=' ';
 
 	for (int j = 1; j < 4; j++)
 	{
@@ -71,17 +71,17 @@ int main()
 // each range + space to its place in order
 printf("Each range and Space to its place in order:\n");	
 
-	printf("[%s] имеет код ",str_val[0]); //для space
+	printf("[%s] have code ",str_val[0]); //для space
 	printf("%d",sort_arr[0]);
     printf("\n");
     
-	printf("[%s] имеют коды ",str_val[1]); //для [0-9]
+	printf("[%s] have code ",str_val[1]); //для [0-9]
 	printf("%d-%d",sort_arr[1]-9,sort_arr[1]);
     printf("\n");
     
     for (int i = 2; i < 4; ++i)
 {
-	printf("[%s] имеют коды ",str_val[i]); //для [A-Z], [a-z]
+	printf("[%s] have code ",str_val[i]); //для [A-Z], [a-z]
 	printf("%d-%d",sort_arr[i]-25,sort_arr[i]);
     printf("\n");
 }
