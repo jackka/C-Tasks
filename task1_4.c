@@ -2,6 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 
+
 char* itoa(int val, int base) {
 	static char buf[32] = { 0 };
 	int i = 30;
@@ -69,17 +70,15 @@ int main()
 	int arraz[26] = { 'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z' };
 	int arrAZ[26] = { 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z' };
 
-
 	char** str_val;
 	str_val = malloc(8 * sizeof(char*));
-	for (int i = 0; i < 8; i++) 
-		str_val[i] = malloc((8 + 1) * sizeof(char));
+	int i = 8; while(i) str_val[--i] = malloc(9);
 
-	str_val[0] = "a-z";
-	str_val[1] = "A-Z";
-	str_val[2] = "0-9";
-	str_val[3] = "Space";
-	
+	strcpy(str_val[0],"a-z");
+	strcpy(str_val[1],"A-Z");
+	strcpy(str_val[2],"0-9");
+	strcpy(str_val[3],"Space");
+
 
 	int sort_arr[4];
 
@@ -114,8 +113,13 @@ int main()
 		printf("[%s] have code%s\n", str_val[i], str_val[i + 4]);
 	}
 
-	free(str_val);
 
+
+	for (int i = 0; i < 8; i++)
+		free(str_val[i]); 
+	
+	free(str_val);
+	
 	return 0;
 
 }
